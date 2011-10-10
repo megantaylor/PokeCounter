@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- jQuery -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+</head>
+
+<body>
+
+<h1>How many times has @selfmadepsyche poked @bydanielvictor?</h1>
+
+<button id="counting">Count Pokes</button>
+
+<h2><span id="pokes"></span></h2>
+
+<script type="text/javascript">
+
+$('#counting').click(function(){
+ 
+	$("#pokes").text("Loading......");
+ 
+	var items = new Array(); 
+ 
+	$.ajax({ 
+ 	type: "GET",
+ 	dataType: "json",
+ 	url: "http://search.twitter.com/search.json?q=from:selfmadepsyche to:bydanielvictor poke&callback=?",
+ 	success: function(data){
+ 		items = data['results'];
+		var count = items.length;
+		$("#pokes").text(count + ' pokes');			
+ 		}
+	});
+}); 
+    </script>
+
+</body>
+</html>
